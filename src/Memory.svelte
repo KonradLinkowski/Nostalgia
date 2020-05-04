@@ -1,10 +1,10 @@
 <script>
+  import { fly, fade } from 'svelte/transition';
   import { onMount } from 'svelte';
   export let memory;
   export let close;
 
   const formatter = new Intl.DateTimeFormat('en-gb', { year: 'numeric', month: 'short', day: '2-digit' }) ;
-  let hidden = true;
   let formattedDate;
 
   $: {
@@ -13,29 +13,20 @@
   }
 
   function closeCard() {
-    hidden = true;
-    setTimeout(() => {
-      close();
-    }, 300);
+    close()
   }
-
-  onMount(() => {
-    setTimeout(() => {
-      hidden = false;
-    }, 10);
-  });
 
   const colors = ['red', 'green', 'blue', 'cyan', 'orange'];
 </script>
 
 <div class="memory">
   <div
+    transition:fade
     on:click={closeCard}
     class="memory__overlay"
-    class:memory__overlay--hidden={hidden}
   ></div>
   <article
-    class:memory__card--hidden={hidden}
+    transition:fly="{{ y: 500 }}"
     style="--card-color: var(--color-{ colors[memory.date % colors.length] });"
     class="memory__card">
     <span class="memory__date">{formattedDate}</span>
@@ -65,10 +56,6 @@
     transition: trasform 0.3s;
   }
 
-  .memory__overlay--hidden {
-    opacity: 0;
-  }
-
   .memory__card {
     --card-color: var(--color-red);
     position: relative;
@@ -82,10 +69,6 @@
     background: var(--card-color);
     transition: transform 0.3s;
     transform: translateY(0);
-  }
-
-  .memory__card--hidden {
-    transform: translateY(200%);
   }
 
   .memory__date {
