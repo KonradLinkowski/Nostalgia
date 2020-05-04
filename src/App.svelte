@@ -1,30 +1,56 @@
 <script>
-	export let name;
+	import Memory from './Memory.svelte';
+	import MemoryForm from './MemoryForm.svelte';
+	import { onMount } from 'svelte';
+
+	let memoryIsOpen = false;
+	let newMemory = '';
+	let memories = [];
+
+	function openMemory() {
+		memoryIsOpen = true;
+	}
+
+	function closeMemory() {
+		memoryIsOpen = false;
+	}
+
+	function saveMemory(memory) {
+		const mem = {
+			text: memory,
+			date: Date.now()
+		}
+		memories.push(mem);
+		localStorage.setItem('memories', JSON.stringify(memories));
+	}
+
+	onMount(() => {
+		memories = JSON.parse(localStorage.getItem('memories'));
+	});
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+<header class="header">
+	<h1 class="header__title">Nostalgia</h1>
+</header>
+<main class="main">
+	<MemoryForm save={saveMemory}></MemoryForm>
+	<button disabled={!memories.length} class="main__button main__button--save" on:click={openMemory}>Load</button>
+	{#if memoryIsOpen}
+		<Memory memory={memories[Math.floor(Math.random() * memories.length)]} close={closeMemory}></Memory>
+	{/if}
 </main>
+<footer></footer>
 
 <style>
-	main {
+	.header {
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+		width: 100%;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+	.main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
 	}
 </style>
