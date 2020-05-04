@@ -1,9 +1,10 @@
 <script>
 	import { memories } from './memory.store.js';
 	import Memory from './Memory.svelte';
-	import MemoryForm from './MemoryForm.svelte';
+	import CreateMemory from './CreateMemory.svelte';
 
 	let memoryIsOpen = false;
+	let createMemoryIsOpen = false;
 
 	function openMemory() {
 		memoryIsOpen = true;
@@ -14,16 +15,27 @@
 	}
 
 	function saveMemory(memory) {
-		memories.add(memory);
+		createMemoryIsOpen = false;
+		if (memory) {
+			memories.add(memory);
+		}
+	}
+
+	function createMemory() {
+		createMemoryIsOpen = true;
 	}
 </script>
 
 <header class="header">
 	<h1 class="header__title">Nostalgia</h1>
+	<p>This is the place to hide your memories</p>
 </header>
 <main class="main">
-	<MemoryForm save={saveMemory}></MemoryForm>
+	<button class="main__button main__button--save" on:click={createMemory}>Create</button>
 	<button disabled={!$memories.length} class="main__button main__button--save" on:click={openMemory}>Load</button>
+	{#if createMemoryIsOpen}
+		<CreateMemory save={saveMemory}></CreateMemory>
+	{/if}
 	{#if memoryIsOpen}
 		<Memory memory={$memories[Math.floor(Math.random() * $memories.length)]} close={closeMemory}></Memory>
 	{/if}
