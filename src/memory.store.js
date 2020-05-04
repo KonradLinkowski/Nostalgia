@@ -1,0 +1,20 @@
+import { writable } from 'svelte/store';
+
+const STORAGE = 'memories';
+
+function createStore() {
+  const memories = JSON.parse(localStorage.getItem(STORAGE)) || [];
+  const { subscribe, set, update } = writable(memories);
+
+	return {
+		subscribe,
+		add: (text, date = Date.now()) => update(memories => {
+      const newMemories = [...memories, { text, date }]
+      localStorage.setItem(STORAGE, JSON.stringify(newMemories));
+      return newMemories;
+    }),
+		reset: () => set([])
+	};
+}
+
+export const memories = createStore();

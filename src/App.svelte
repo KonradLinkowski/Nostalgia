@@ -1,11 +1,9 @@
 <script>
+	import { memories } from './memory.store.js';
 	import Memory from './Memory.svelte';
 	import MemoryForm from './MemoryForm.svelte';
-	import { onMount } from 'svelte';
 
 	let memoryIsOpen = false;
-	let newMemory = '';
-	let memories = [];
 
 	function openMemory() {
 		memoryIsOpen = true;
@@ -16,17 +14,8 @@
 	}
 
 	function saveMemory(memory) {
-		const mem = {
-			text: memory,
-			date: Date.now()
-		}
-		memories.push(mem);
-		localStorage.setItem('memories', JSON.stringify(memories));
+		memories.add(memory);
 	}
-
-	onMount(() => {
-		memories = JSON.parse(localStorage.getItem('memories'));
-	});
 </script>
 
 <header class="header">
@@ -34,9 +23,9 @@
 </header>
 <main class="main">
 	<MemoryForm save={saveMemory}></MemoryForm>
-	<button disabled={!memories.length} class="main__button main__button--save" on:click={openMemory}>Load</button>
+	<button disabled={!$memories.length} class="main__button main__button--save" on:click={openMemory}>Load</button>
 	{#if memoryIsOpen}
-		<Memory memory={memories[Math.floor(Math.random() * memories.length)]} close={closeMemory}></Memory>
+		<Memory memory={$memories[Math.floor(Math.random() * $memories.length)]} close={closeMemory}></Memory>
 	{/if}
 </main>
 <footer></footer>
