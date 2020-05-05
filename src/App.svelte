@@ -5,6 +5,8 @@
 
 	let memoryIsOpen = false;
 	let createMemoryIsOpen = false;
+	let appInstalled = true;
+	let installEvent = null;
 
 	function openMemory() {
 		memoryIsOpen = true;
@@ -29,7 +31,24 @@
 	function createMemory() {
 		createMemoryIsOpen = true;
 	}
+
+	function handleInstallPrompt(e) {
+		appInstalled = false;
+		installEvent = e;
+	}
+
+	function install() {
+    installEvent.prompt()
+    installEvent.userChoice
+    .then(choiceResult => {
+      if (choiceResult.outcome === 'accepted') {
+        appInstalled = true;
+      }
+    })
+	}
 </script>
+
+<svelte:window on:beforeinstallprompt={handleInstallPrompt}/>
 
 <header class="header">
 	<h1 class="header__title">Nostalgia</h1>
@@ -57,6 +76,11 @@
 </main>
 <footer class="footer">
 	<a class="footer__link" target="_blank" href="https://github.com/KonradLinkowski/Nostalgia">Github</a>
+	{#if !appInstalled}
+		<button class="install-button" on:click={install}>
+			<i class="install-button__icon material-icons">save_alt</i>
+		</button>
+	{/if}
 </footer>
 
 <style>
@@ -123,6 +147,7 @@
 		padding: 10px;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 	}
 
 	.footer__link {
@@ -133,4 +158,24 @@
 		text-decoration: underline;
 		outline: none;
 	}
+
+	.install-button {
+    padding: 0;
+    line-height: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+		border-radius: 50%;
+		margin-left: 30px;
+  }
+
+  .install-button:active {
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .install-button:hover,.install-button:focus {
+    background-color: rgba(0, -0, 0, 0.1);
+  }
 </style>
