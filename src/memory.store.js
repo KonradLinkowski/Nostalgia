@@ -13,6 +13,11 @@ function createStore() {
       localStorage.setItem(STORAGE, JSON.stringify(newMemories));
       return newMemories;
     }),
+    del: (text, date) => update(memories => {
+      const mems = memories.filter(mem => mem.text !== text || mem.date !==  date);
+      localStorage.setItem(STORAGE, JSON.stringify(mems));
+      return mems;
+    }),
 		reset: () => set([])
 	};
 }

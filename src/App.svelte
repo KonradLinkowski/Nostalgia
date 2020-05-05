@@ -21,6 +21,11 @@
 		}
 	}
 
+	function deleteMemory(memory, date) {
+		closeMemory();
+		memories.del(memory, date);
+	}
+
 	function createMemory() {
 		createMemoryIsOpen = true;
 	}
@@ -43,7 +48,11 @@
 		<CreateMemory save={saveMemory}></CreateMemory>
 	{/if}
 	{#if memoryIsOpen}
-		<Memory memory={$memories[Math.floor(Math.random() * $memories.length)]} close={closeMemory}></Memory>
+		<Memory
+			memory={$memories[Math.floor(Math.random() * $memories.length)]}
+			close={closeMemory}
+			dele={deleteMemory}
+		></Memory>
 	{/if}
 </main>
 <footer class="footer">

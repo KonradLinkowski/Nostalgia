@@ -3,11 +3,12 @@
   import { onMount, onDestroy } from 'svelte';
   export let date;
   export let close;
+  export let action;
 
   const formatter = new Intl.DateTimeFormat('en-gb', { year: 'numeric', month: 'short', day: '2-digit' }) ;
   let formattedDate;
 
-  $: {
+  $: if (date) {
     const dat = new Date(date);
     formattedDate = formatter.format(dat);
   }
@@ -59,13 +60,20 @@
     transition:fly="{{ y: 500, duration: 300 }}"
     style="--card-color: var(--color-{ colors[date % colors.length] });"
     class="modal__card">
-    <span class="modal__date">{formattedDate}</span>
+    {#if date}
+      <span class="modal__date">{formattedDate}</span>
+    {/if}
     <div class="modal__body">
       <slot name="content"></slot>
     </div>
-    <button class="modal__close" autofocus on:click={close}>
-		  <i class="modal__close--icon material-icons">close</i>
+    <button class="modal__button modal__button--close" autofocus on:click={close}>
+		  <i class="material-icons">close</i>
     </button>
+    {#if action}
+      <button class="modal__button modal__button--action" on:click={action}>
+        <slot name="action"></slot>
+      </button>
+    {/if}
   </article>
 </div>
 
@@ -95,7 +103,7 @@
     --card-color: var(--color-red);
     position: relative;
     margin: 10px;
-    padding: 30px;
+    padding: 40px;
     border-radius: 10px;
     width: 500px;
     max-width: 100%;
@@ -121,10 +129,7 @@
     flex: 1;
   }
   
-  .modal__close {
-    position: absolute;
-    top: 0;
-    right: 0;
+  .modal__button {
     margin: 10px;
     padding: 0;
     width: 30px;
@@ -136,13 +141,25 @@
     border-radius: 50%;
   }
 
-  .modal__close:active {
+  .modal__button:active {
     background: none;
     border: none;
     box-shadow: none;
   }
 
-  .modal__close:hover,.modal__close:focus {
+  .modal__button:hover,.modal__button:focus {
     background-color: rgba(0, -0, 0, 0.1);
+  }
+
+  .modal__button--close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .modal__button--action {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 </style>
