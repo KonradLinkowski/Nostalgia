@@ -36,7 +36,10 @@
     class="memory__card">
     <span class="memory__date">{formattedDate}</span>
     <textarea class="memory__text" bind:value={newMemory} placeholder="Today I..."></textarea>
-    <button class="memory__save" on:click={saveMemory}>Save</button>
+    <button class="memory__save" on:click={saveMemory}>
+		  <i class="memory__save-icon material-icons">save</i>
+      <span>Save</span>
+    </button>
     <button class="memory__close" on:click={closeCard}>x</button>
   </article>
 </div>
@@ -51,6 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 30;
   }
 
   .memory__overlay {
@@ -115,4 +119,24 @@
     background-color: var(--card-color);
     margin: 10px 0;
   }
+
+  .memory__save {
+		background: none;
+		border: none;
+		box-shadow: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 2px solid black;
+		margin-bottom: 20px;
+	}
+
+	.memory__save-icon {
+		font-size: 2rem;
+		margin-right: 10px;
+	}
+
+	.memory__save:active {
+		background: none;
+	}
 </style>

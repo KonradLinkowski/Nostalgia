@@ -31,8 +31,14 @@
 	<p>This is the place to hide your memories</p>
 </header>
 <main class="main">
-	<button class="main__button main__button--save" on:click={createMemory}>Create</button>
-	<button disabled={!$memories.length} class="main__button main__button--save" on:click={openMemory}>Load</button>
+	<button class="main__button main__button--create" on:click={createMemory}>
+		<i class="main__button-icon material-icons">add</i>
+		<span>Create Memory</span>
+	</button>
+	<button disabled={!$memories.length} class="main__button main__button--recall" on:click={openMemory}>
+		<i class="main__button-icon material-icons">cloud</i>
+		<span>Recall Memory</span>
+	</button>
 	{#if createMemoryIsOpen}
 		<CreateMemory save={saveMemory}></CreateMemory>
 	{/if}
@@ -41,7 +47,7 @@
 	{/if}
 </main>
 <footer class="footer">
-	<a class="footer__link" href="https://github.com/KonradLinkowski/Nostalgia">Github</a>
+	<a class="footer__link" target="_blank" href="https://github.com/KonradLinkowski/Nostalgia">Github</a>
 </footer>
 
 <style>
@@ -55,6 +61,26 @@
 		flex-direction: column;
 		align-items: center;
 		width: 100%;
+	}
+
+	.main__button {
+		background: none;
+		border: none;
+		box-shadow: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 2px solid black;
+		margin-bottom: 20px;
+	}
+
+	.main__button-icon {
+		font-size: 2rem;
+		margin-right: 10px;
+	}
+
+	.main__button:active {
+		background: none;
 	}
 
 	.footer {

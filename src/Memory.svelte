@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 30;
   }
 
   .memory__overlay {
