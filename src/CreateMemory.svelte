@@ -48,7 +48,6 @@
 		justify-content: center;
 		align-items: center;
 		border: 2px solid black;
-    margin-bottom: 20px;
     transition: transform 0.1s;
   }
   

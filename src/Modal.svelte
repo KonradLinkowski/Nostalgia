@@ -3,7 +3,7 @@
   import { onMount, onDestroy } from 'svelte';
   export let date;
   export let close;
-  export let action;
+  export let action = null;
 
   const formatter = new Intl.DateTimeFormat('en-gb', { year: 'numeric', month: 'short', day: '2-digit' }) ;
   let formattedDate;
