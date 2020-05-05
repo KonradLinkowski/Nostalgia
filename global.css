@@ -66,6 +66,7 @@ button {
 	background-color: #f4f4f4;
 	outline: none;
 	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
 }
 
 button:disabled {
