@@ -52,7 +52,7 @@
     transition: transform 0.1s;
   }
   
-  .memory-form__save:hover,.memory-form__save:focus {
+  .memory-form__save:not(:disabled):hover,.memory-form__save:focus {
     transform: translateY(-5px);
 	  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
   }

@@ -56,7 +56,7 @@
     transition: transform 0.1s;
   }
   
-.delete-modal__close:hover,.delete-modal__close:focus {
+.delete-modal__close:not(:disabled):hover,.delete-modal__close:focus {
   transform: translateY(-5px);
   box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 }

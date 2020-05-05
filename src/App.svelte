@@ -121,7 +121,7 @@
     transition: transform 0.1s;
 	}
 
-	.main__button:hover,.main__button:focus {
+	.main__button:not(:disabled):hover,.main__button:focus {
 		transform: translateY(-5px);
 	  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 	}
