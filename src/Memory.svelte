@@ -30,7 +30,7 @@
     style="--card-color: var(--color-{ colors[memory.date % colors.length] });"
     class="memory__card">
     <span class="memory__date">{formattedDate}</span>
-    <p>{ memory.text }</p>
+    <p class="memory__text">{ memory.text }</p>
     <button class="memory__close" on:click={closeCard}>x</button>
   </article>
 </div>
@@ -70,6 +70,8 @@
     background: var(--card-color);
     transition: transform 0.3s;
     transform: translateY(0);
+    display: flex;
+    flex-direction: column;
   }
 
   .memory__date {
@@ -78,6 +80,13 @@
     left: 0;
     margin: 10px;
     font-size: 12px;
+  }
+
+  .memory__text {
+    word-break:  break-word;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    flex: 1;
   }
   
   .memory__close {

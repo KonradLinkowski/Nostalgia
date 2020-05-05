@@ -28,7 +28,7 @@
 
 <header class="header">
 	<h1 class="header__title">Nostalgia</h1>
-	<p>This is the place to hide your memories</p>
+	<p class="header__subtitle">This is the place to hide<br><strong>Your Memories</strong></p>
 </header>
 <main class="main">
 	<button class="main__button main__button--create" on:click={createMemory}>
@@ -54,6 +54,19 @@
 	.header {
 		text-align: center;
 		width: 100%;
+	}
+
+	.header__title {
+		margin: 20px 0 20px 0;
+		font-size: 4rem;
+		font-family: 'Sacramento', cursive;
+	}
+
+	.header__subtitle {
+		margin: 10px 0 50px 0;
+		font-size: 2rem;
+		line-height: 2rem;
+		font-family: 'Parisienne', cursive;
 	}
 
 	.main {
