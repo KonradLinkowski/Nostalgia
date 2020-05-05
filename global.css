@@ -18,6 +18,10 @@ html, body {
 	width: 100%;
 }
 
+html {
+	font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1900 - 300)));
+}
+
 body {
 	color: #333;
 	background-color: var(--background-color);
