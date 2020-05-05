@@ -1,0 +1,17 @@
+{
+  "short_name": "Nostalgia",
+  "name": "Nostalgia",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./",
+  "background_color": "#FFFFD8",
+  "display": "standalone",
+  "scope": ".",
+  "orientation": "portrait",
+  "theme_color": "#000000"
+}
