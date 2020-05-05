@@ -85,7 +85,18 @@
 		align-items: center;
 		border: 2px solid black;
 		margin-bottom: 20px;
+    transition: transform 0.1s;
 	}
+
+	.main__button:hover,.main__button:focus {
+		transform: translateY(-5px);
+	  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+	}
+
+	.main__button:active {
+    transform: translateY(0);
+	  box-shadow: none;
+  }
 
 	.main__button-icon {
 		font-size: 2rem;
@@ -107,6 +118,10 @@
 
 	.footer__link {
 		color: black;
+	}
+
+	.footer__link:hover,.footer__link:focus {
 		text-decoration: underline;
+		outline: none;
 	}
 </style>

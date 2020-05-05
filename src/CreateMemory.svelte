@@ -1,117 +1,37 @@
 <script>
-  import { fly, fade } from 'svelte/transition';
-  import { onMount } from 'svelte';
+  import Modal from './Modal.svelte';
   export let save;
 
-  let newMemory = '';
-  let date = new Date();
-
-  const formatter = new Intl.DateTimeFormat('en-gb', { year: 'numeric', month: 'short', day: '2-digit' }) ;
-  let formattedDate;
-
-  $: {
-    formattedDate = formatter.format(date);
-  }
+  let memory = '';
 
   function closeCard() {
     save(null);
   }
 
   function saveMemory() {
-    save(newMemory);
+    save(memory);
   }
 
   const colors = ['red', 'green', 'blue', 'cyan', 'orange'];
 </script>
 
-<div class="memory">
-  <div
-    transition:fade
-    on:click={closeCard}
-    class="memory__overlay"
-  ></div>
-  <article
-    transition:fly="{{ y: 500 }}"
-    style="--card-color: var(--color-{ colors[date % colors.length] });"
-    class="memory__card">
-    <span class="memory__date">{formattedDate}</span>
-    <textarea class="memory__text" bind:value={newMemory} placeholder="Today I..."></textarea>
-    <button class="memory__save" on:click={saveMemory}>
-		  <i class="memory__save-icon material-icons">save</i>
+<Modal date={Date.now()} close={closeCard}>
+  <div class="memory-form" slot="content">
+    <textarea class="memory-form__input" bind:value={memory} placeholder="Today I..."></textarea>
+    <button class="memory-form__save" disabled={!memory.length} on:click={saveMemory}>
+      <i class="memory-form__save-icon material-icons">save</i>
       <span>Save</span>
     </button>
-    <button class="memory__close" on:click={closeCard}>x</button>
-  </article>
-</div>
-
+  </div>
+</Modal>
 <style>
-  .memory {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 30;
-  }
-
-  .memory__overlay {
-    position: absolute;
-    background: black;
-    opacity: 0.2;
-    width: 100%;
-    height: 100%;
-    transition: trasform 0.3s;
-  }
-
-  .memory__card {
-    --card-color: var(--color-red);
-    position: relative;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-    max-width: 100%;
-    height: 400px;
-    max-height: 100%;
-    background: var(--card-color);
-    transition: transform 0.3s;
-    transform: translateY(0);
+  .memory-form {
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
-  .memory__date {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 10px;
-    font-size: 12px;
-  }
-  
-  .memory__close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    padding: 10px;
-    width: 30px;
-    height: 30px;
-    line-height: 10px;
-    background: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  .memory__close:active {
-    background: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  .memory__text {
+  .memory-form__input {
     outline: none;
     border: none;
     flex: 1;
@@ -120,7 +40,7 @@
     margin: 10px 0;
   }
 
-  .memory__save {
+  .memory-form__save {
 		background: none;
 		border: none;
 		box-shadow: none;
@@ -128,15 +48,26 @@
 		justify-content: center;
 		align-items: center;
 		border: 2px solid black;
-		margin-bottom: 20px;
-	}
+    margin-bottom: 20px;
+    transition: transform 0.1s;
+  }
+  
+  .memory-form__save:hover,.memory-form__save:focus {
+    transform: translateY(-5px);
+	  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+  }
 
-	.memory__save-icon {
+  .memory-form__save:active {
+    transform: translateY(0);
+	  box-shadow: none;
+  }
+
+	.memory-form__save-icon {
 		font-size: 2rem;
 		margin-right: 10px;
 	}
 
-	.memory__save:active {
+	.memory-form__save:active {
 		background: none;
 	}
 </style>
