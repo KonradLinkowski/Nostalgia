@@ -119,7 +119,7 @@
     top: 0;
     left: 0;
     margin: 10px;
-    font-size: 12px;
+    font-size: 0.8rem;
   }
 
   .modal__body {
