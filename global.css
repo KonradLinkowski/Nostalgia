@@ -9,7 +9,11 @@
 	--color-yellow: #FFFFD8;
 	--color-orange: #FFDAC1;
 	--color-cyan: #E0FEFE;
+	--color-black: #222222;
 
+	--opacity-disabled: 0.6;
+
+	--main-color: var(--color-black);
 	--background-color: var(--color-yellow);
 }
 
@@ -23,7 +27,7 @@ html {
 }
 
 body {
-	color: #333;
+	color: var(--main-color);
 	background-color: var(--background-color);
 	display: flex;
 	flex-direction: column;
@@ -34,7 +38,7 @@ body {
 }
 
 a {
-	color: rgb(0,100,200);
+	color: var(--main-color);
 	text-decoration: none;
 }
 
@@ -43,7 +47,7 @@ a:hover {
 }
 
 a:visited {
-	color: rgb(0,80,160);
+	color: var(--main-color);
 }
 
 label {
@@ -59,8 +63,9 @@ input, button, select, textarea {
 	border-radius: 2px;
 }
 
-input:disabled {
-	color: #ccc;
+input:disabled,button:disabled {
+	cursor: not-allowed;
+	opacity: var(--opacity-disabled);
 }
 
 input[type="range"] {
@@ -68,22 +73,16 @@ input[type="range"] {
 }
 
 button {
-	color: #333;
-	background-color: #f4f4f4;
+	color: var(--main-color);
 	outline: none;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
 }
 
-button:disabled {
-	color: #999;
-	cursor: not-allowed;
-}
-
 button:not(:disabled):active {
-	background-color: #ddd;
+	color: var(--main-color);
 }
 
 button:focus {
-	border-color: #666;
+	color: var(--main-color);
 }
