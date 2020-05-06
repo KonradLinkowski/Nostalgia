@@ -55,14 +55,16 @@
 	<p class="header__subtitle">This is the place to hide<br><strong>Your Memories</strong></p>
 </header>
 <main class="main">
-	<button class="main__button main__button--create" on:click={createMemory}>
-		<i class="main__button-icon material-icons">add</i>
-		<span>Create Memory</span>
-	</button>
-	<button disabled={!$memories.length} class="main__button main__button--recall" on:click={openMemory}>
-		<i class="main__button-icon material-icons">cloud</i>
-		<span>Recall Memory</span>
-	</button>
+	<div class="main-actions">
+		<button class="main-actions__button main-actions__button--create" on:click={createMemory}>
+			<i class="main-actions__button-icon material-icons">add</i>
+			<span>Create Memory</span>
+		</button>
+		<button disabled={!$memories.length} class="main-actions__button main-actions__button--recall" on:click={openMemory}>
+			<i class="main-actions__button-icon material-icons">cloud</i>
+			<span>Recall Memory</span>
+		</button>
+	</div>
 	{#if createMemoryIsOpen}
 		<CreateMemory save={saveMemory}></CreateMemory>
 	{/if}
@@ -104,12 +106,17 @@
 
 	.main {
 		display: flex;
-		flex-direction: column;
+		justify-content: center;
 		align-items: center;
-		width: 100%;
 	}
 
-	.main__button {
+	.main-actions {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.main-actions__button {
 		background: none;
 		border: none;
 		box-shadow: none;
@@ -121,22 +128,22 @@
     transition: transform 0.1s;
 	}
 
-	.main__button:not(:disabled):hover,.main__button:focus {
+	.main-actions__button:not(:disabled):hover,.main-actions__button:focus {
 		transform: translateY(-5px);
 	  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 	}
 
-	.main__button:active {
+	.main-actions__button:active {
     transform: translateY(0);
 	  box-shadow: none;
   }
 
-	.main__button-icon {
+	.main-actions__button-icon {
 		font-size: 2rem;
-		margin-right: 10px;
+		margin-right: 20px;
 	}
 
-	.main__button:active {
+	.main-actions__button:active {
 		background: none;
 	}
 
