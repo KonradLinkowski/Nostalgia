@@ -1,6 +1,6 @@
+![App Screenshot](public/image.png "App Screenshot")
 # Nostalgia
-
-This is the place to hide your memories
+Small [Progressive Web App][pwa] to store your notes made in [Svelte][svelte].
 
 ## Live
 https://konradlinkowski.github.io/Nostalgia
@@ -27,3 +27,6 @@ To create an optimised version of the app:
 ```bash
 yarn build
 ```
+
+[pwa]: (https://web.dev/progressive-web-apps/)
+[svelte]: (https://svelte.dev)
