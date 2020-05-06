@@ -12,31 +12,41 @@ const filesToCache = [
   'https://fonts.googleapis.com/css?family=Lato&display=swap',
   'https://fonts.googleapis.com/icon?family=Material+Icons'
 ];
+
 self.addEventListener('install', e => {
+  self.skipWaiting();
   e.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache.addAll(filesToCache);
     })
   );
 });
+
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(thisCacheName => {
-          if (thisCacheName !== cacheName) {
-            return caches.delete(thisCacheName);
-          }
-        })
+        cacheNames
+        .filter(thisCacheName => thisCacheName.startsWith('nostalgia') && thisCacheName !== cacheName)
+        .map(thisCacheName => caches.delete(thisCacheName))
       );
     })
   );
 });
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    (async function() {
-      const response = await caches.match(e.request);
-      return response || fetch(e.request);
-    })()
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(matches => {
+      const newData = fetch(event.request)
+      .then(async response => {
+        const cache = await caches.open(cacheName)
+        cache.put(event.request, response.clone())
+        return response
+      })
+      .catch(error => {
+        console.warn('Could not fetch', event.request, error);
+      });
+      return matches || newData;
+    })
   );
 });
