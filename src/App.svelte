@@ -5,7 +5,7 @@
 
 	let memoryIsOpen = false;
 	let createMemoryIsOpen = false;
-	let appInstalled = true;
+	let appInstalled = window.matchMedia('(display-mode: standalone)').matches;
 	let installEvent = null;
 
 	function openMemory() {
