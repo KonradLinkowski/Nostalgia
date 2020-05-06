@@ -107,7 +107,7 @@
 	.main {
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		flex: 1;
 	}
 
 	.main-actions {
@@ -148,13 +148,11 @@
 	}
 
 	.footer {
-		position: fixed;
-		bottom: 0px;
-		width: 100%;
 		padding: 10px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin: 10px;
 	}
 
 	.footer__link {
