@@ -41,32 +41,32 @@
   }
 
   .memory-form__save {
-		background: none;
-		border: none;
-		box-shadow: none;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 2px solid black;
+    background: none;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
     transition: transform 0.1s;
   }
   
   .memory-form__save:not(:disabled):hover,.memory-form__save:focus {
     transform: translateY(-5px);
-	  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
   }
 
   .memory-form__save:active {
     transform: translateY(0);
-	  box-shadow: none;
+    box-shadow: none;
   }
 
-	.memory-form__save-icon {
-		font-size: 2rem;
-		margin-right: 10px;
-	}
+  .memory-form__save-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+  }
 
-	.memory-form__save:active {
-		background: none;
-	}
+  .memory-form__save:active {
+    background: none;
+  }
 </style>

@@ -30,3 +30,6 @@ yarn build
 
 [pwa]: (https://web.dev/progressive-web-apps/)
 [svelte]: (https://svelte.dev)
+
+## License
+This project is [MIT licensed](./LICENSE)
