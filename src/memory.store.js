@@ -18,7 +18,10 @@ function createStore() {
       localStorage.setItem(STORAGE, JSON.stringify(mems));
       return mems;
     }),
-		reset: () => set([])
+		reset: () => update(memories => {
+      localStorage.setItem(STORAGE, JSON.stringify([]));
+      return [];
+    })
 	};
 }
 
