@@ -4,11 +4,11 @@ const STORAGE = 'memories';
 
 function createStore() {
   const memories = JSON.parse(localStorage.getItem(STORAGE)) || [];
-  const { subscribe, set, update } = writable(memories);
+  const { subscribe, update } = writable(memories);
 
-	return {
-		subscribe,
-		add: (text, date = Date.now()) => update(memories => {
+  return {
+    subscribe,
+    add: (text, date = Date.now()) => update(memories => {
       const newMemories = [...memories, { text, date }]
       localStorage.setItem(STORAGE, JSON.stringify(newMemories));
       return newMemories;
@@ -18,11 +18,12 @@ function createStore() {
       localStorage.setItem(STORAGE, JSON.stringify(mems));
       return mems;
     }),
-		reset: () => update(memories => {
-      localStorage.setItem(STORAGE, JSON.stringify([]));
-      return [];
+    reset: () => update(() => {
+      const mems = [];
+      localStorage.setItem(STORAGE, JSON.stringify(mems));
+      return mems;
     })
-	};
+  };
 }
 
 export const memories = createStore();

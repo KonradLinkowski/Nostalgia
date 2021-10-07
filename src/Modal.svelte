@@ -18,34 +18,34 @@
   let modal;
 
   const handleKeydown = e => {
-		if (e.key === 'Escape') {
-			close();
-			return;
-		}
+    if (e.key === 'Escape') {
+      close();
+      return;
+    }
 
-		if (e.key === 'Tab') {
-			// trap focus
-			const nodes = modal.querySelectorAll('*');
-			const tabbable = Array.from(nodes).filter(n => n.tabIndex >= 0 && !n.disabled);
+    if (e.key === 'Tab') {
+      // trap focus
+      const nodes = modal.querySelectorAll('*');
+      const tabbable = Array.from(nodes).filter(n => n.tabIndex >= 0 && !n.disabled);
 
-			let index = tabbable.indexOf(document.activeElement);
-			if (index === -1 && e.shiftKey) index = 0;
+      let index = tabbable.indexOf(document.activeElement);
+      if (index === -1 && e.shiftKey) index = 0;
 
-			index += tabbable.length + (e.shiftKey ? -1 : 1);
-			index %= tabbable.length;
+      index += tabbable.length + (e.shiftKey ? -1 : 1);
+      index %= tabbable.length;
 
-			tabbable[index].focus();
-			e.preventDefault();
-		}
+      tabbable[index].focus();
+      e.preventDefault();
+    }
   };
   
   const previouslyFocused = typeof document !== 'undefined' && document.activeElement;
 
-	if (previouslyFocused) {
-		onDestroy(() => {
-			previouslyFocused.focus();
-		});
-	}
+  if (previouslyFocused) {
+    onDestroy(() => {
+      previouslyFocused.focus();
+    });
+  }
 </script>
 
 <svelte:window on:keydown={handleKeydown}/>
@@ -67,7 +67,7 @@
       <slot name="content"></slot>
     </div>
     <button class="modal__button modal__button--close" autofocus on:click={close}>
-		  <i class="material-icons">close</i>
+      <i class="material-icons">close</i>
     </button>
     {#if action}
       <button class="modal__button modal__button--action" on:click={action}>

@@ -1,88 +1,88 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-	--color-red: #FF9AA2;
-	--color-green: #B5EAD7;
-	--color-blue: #C7CEEA;
-	--color-yellow: #FFFFD8;
-	--color-orange: #FFDAC1;
-	--color-cyan: #E0FEFE;
-	--color-black: #222222;
+  --color-red: #FF9AA2;
+  --color-green: #B5EAD7;
+  --color-blue: #C7CEEA;
+  --color-yellow: #FFFFD8;
+  --color-orange: #FFDAC1;
+  --color-cyan: #E0FEFE;
+  --color-black: #222222;
 
-	--opacity-disabled: 0.6;
+  --opacity-disabled: 0.6;
 
-	--main-color: var(--color-black);
-	--background-color: var(--color-yellow);
+  --main-color: var(--color-black);
+  --background-color: var(--color-yellow);
 }
 
 html, body {
-	position: relative;
-	width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 html {
-	font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1900 - 300)));
+  font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1900 - 300)));
 }
 
 body {
-	color: var(--main-color);
-	background-color: var(--background-color);
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	margin: 0;
-	box-sizing: border-box;
-	font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  color: var(--main-color);
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
 a {
-	color: var(--main-color);
-	text-decoration: none;
+  color: var(--main-color);
+  text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:visited {
-	color: var(--main-color);
+  color: var(--main-color);
 }
 
 label {
-	display: block;
+  display: block;
 }
 
 input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	padding: 0.4em;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.4em;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 2px;
 }
 
 input:disabled,button:disabled {
-	cursor: not-allowed;
-	opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  opacity: var(--opacity-disabled);
 }
 
 input[type="range"] {
-	height: 0;
+  height: 0;
 }
 
 button {
-	color: var(--main-color);
-	outline: none;
-	cursor: pointer;
-	-webkit-tap-highlight-color: transparent;
+  color: var(--main-color);
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:not(:disabled):active {
-	color: var(--main-color);
+  color: var(--main-color);
 }
 
 button:focus {
-	color: var(--main-color);
+  color: var(--main-color);
 }

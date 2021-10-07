@@ -45,13 +45,13 @@
 }
 
 .delete-modal__close {
-		background: none;
-		border: none;
-		box-shadow: none;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 2px solid black;
+    background: none;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
     transition: transform 0.1s;
   }
   
