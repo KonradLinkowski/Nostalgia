@@ -28,6 +28,10 @@
 		memories.del(memory, date);
 	}
 
+	function clearMemories() {
+		memories.reset();
+	}
+
 	function createMemory() {
 		createMemoryIsOpen = true;
 	}
@@ -63,6 +67,10 @@
 		<button disabled={!$memories.length} class="main-actions__button main-actions__button--recall" on:click={openMemory}>
 			<i class="main-actions__button-icon material-icons">cloud</i>
 			<span>Recall Memory</span>
+		</button>
+		<button disabled={!$memories.length} class="main-actions__button main-actions__button--clear" on:click={clearMemories}>
+			<i class="main-actions__button-icon material-icons">refresh</i>
+			<span>Clear Memories</span>
 		</button>
 	</div>
 	{#if createMemoryIsOpen}
@@ -145,6 +153,10 @@
 
 	.main-actions__button:active {
 		background: none;
+	}
+
+	.main-actions__button--clear {
+		margin-top: 5rem;
 	}
 
 	.footer {
