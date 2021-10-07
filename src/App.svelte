@@ -69,7 +69,7 @@
 			<span>Recall Memory</span>
 		</button>
 		<button disabled={!$memories.length} class="main-actions__button main-actions__button--clear" on:click={clearMemories}>
-			<i class="main-actions__button-icon material-icons">refresh</i>
+			<i class="main-actions__button-icon material-icons">delete_forever</i>
 			<span>Clear Memories</span>
 		</button>
 	</div>
