@@ -1,4 +1,5 @@
 <script>
+  import Modal from './Modal.svelte';
   import { memories } from './memory.store.js';
   import Memory from './Memory.svelte';
   import CreateMemory from './CreateMemory.svelte';
@@ -28,8 +29,18 @@
     memories.del(memory, date);
   }
 
-  function clearMemories() {
-    memories.reset();
+  let clearMemoriesIsOpen = false;
+  function openClearModal() {
+      clearMemoriesIsOpen = true;
+  }
+
+  function closeClearModal() {
+      clearMemoriesIsOpen = false;
+  }
+
+  function clearAndClose() {
+      clearMemoriesIsOpen = false;
+      memories.reset();
   }
 
   function createMemory() {
@@ -68,7 +79,7 @@
       <i class="main-actions__button-icon material-icons">cloud</i>
       <span>Recall Memory</span>
     </button>
-    <button disabled={!$memories.length} class="main-actions__button main-actions__button--clear" on:click={clearMemories}>
+    <button disabled={!$memories.length} class="main-actions__button main-actions__button--clear" on:click={openClearModal}>
       <i class="main-actions__button-icon material-icons">delete_forever</i>
       <span>Clear Memories</span>
     </button>
@@ -83,6 +94,24 @@
       dele={deleteMemory}
     ></Memory>
   {/if}
+  {#if clearMemoriesIsOpen}
+    <Modal close={closeClearModal} date={0}>
+      <div class="clear-modal" slot="content">
+        <p class="clear-modal__text">Are you sure you want to delete all of your memories?</p>
+        <div class="clear-modal__choices">
+          <button class="clear-modal__confirm" on:click={() => clearAndClose()}>
+            <i class="clear-modal__close-icon material-icons">delete</i>
+            <span>Confirm</span>
+          </button>
+          <button class="clear-modal__cancel" on:click={() => closeClearModal()}>
+            <i class="clear-modal__close-icon material-icons">cancel</i>
+            <span>Cancel</span>
+          </button>
+        </div>
+      </div>
+    </Modal>
+  {/if}
+
 </main>
 <footer class="footer">
   <a class="footer__link" target="_blank" href="https://github.com/KonradLinkowski/Nostalgia">Github</a>
@@ -157,6 +186,55 @@
 
   .main-actions__button--clear {
     margin-top: 3rem;
+  }
+
+  .clear-modal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .clear-modal__text {
+    font-size: 1.5rem;
+    text-align: center;
+    flex: 1;
+  }
+
+  .clear-modal__choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .clear-modal__confirm,
+  .clear-modal__cancel {
+      background: none;
+      border: none;
+      box-shadow: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid black;
+      transition: transform 0.1s;
+  }
+
+  .clear-modal__close:not(:disabled):hover,.clear-modal__close:focus {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+  }
+
+  .clear-modal__close:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  .clear-modal__close-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+  }
+
+  .clear-modal__close:active {
+    background: none;
   }
 
   .footer {
