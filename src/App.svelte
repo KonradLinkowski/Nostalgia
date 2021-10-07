@@ -78,7 +78,7 @@
 	{/if}
 	{#if memoryIsOpen}
 		<Memory
-			memory={$memories[Math.floor(Math.random() * $memories.length)]}
+			memory={$memories[Math.floor(Math.pow(Math.random(), 1.3) * $memories.length)]}
 			close={closeMemory}
 			dele={deleteMemory}
 		></Memory>
