@@ -15,7 +15,7 @@
   }
 </script>
 
-<Modal date={memory.date} close={close} action={openDeleteModal}>
+<Modal date={memory.date} cardColor={memory.color} close={close} action={openDeleteModal}>
   <p slot="content" class="memory__text">{ memory.text }</p>
   <i class="material-icons" slot="action">delete</i>
 </Modal>

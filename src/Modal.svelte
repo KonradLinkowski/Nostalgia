@@ -2,6 +2,7 @@
   import { fly, fade } from 'svelte/transition';
   import { onMount, onDestroy } from 'svelte';
   export let date;
+  export let cardColor;
   export let close;
   export let action = null;
 
@@ -12,8 +13,6 @@
     const dat = new Date(date);
     formattedDate = formatter.format(dat);
   }
-
-  const colors = ['red', 'green', 'blue', 'cyan', 'orange'];
 
   let modal;
 
@@ -58,7 +57,7 @@
   ></div>
   <article
     transition:fly="{{ y: 500, duration: 300 }}"
-    style="--card-color: var(--color-{ colors[date % colors.length] });"
+    style="--card-color: var(--color-{cardColor});"
     class="modal__card">
     {#if date}
       <span class="modal__date">{formattedDate}</span>

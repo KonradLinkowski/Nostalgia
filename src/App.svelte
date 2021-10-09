@@ -7,6 +7,7 @@
   let createMemoryIsOpen = false;
   let appInstalled = window.matchMedia('(display-mode: standalone)').matches;
   let installEvent = null;
+  let cardColor = '';
 
   function openMemory() {
     memoryIsOpen = true;
@@ -16,10 +17,10 @@
     memoryIsOpen = false;
   }
 
-  function saveMemory(memory) {
+  function saveMemory(memory, cardColor) {
     createMemoryIsOpen = false;
     if (memory) {
-      memories.add(memory);
+      memories.add(memory, cardColor);
     }
   }
 
@@ -74,7 +75,7 @@
     </button>
   </div>
   {#if createMemoryIsOpen}
-    <CreateMemory save={saveMemory}></CreateMemory>
+    <CreateMemory save={saveMemory}> </CreateMemory>
   {/if}
   {#if memoryIsOpen}
     <Memory

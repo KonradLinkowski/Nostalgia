@@ -1,28 +1,35 @@
 <script>
   import Modal from './Modal.svelte';
   export let save;
+  export let cardColor;
 
   let memory = '';
+
 
   function closeCard() {
     save(null);
   }
 
   function saveMemory() {
-    save(memory);
+    save(memory, cardColor);
   }
 
-  const colors = ['red', 'green', 'blue', 'cyan', 'orange'];
 
+  function newRandomColor() {
+    const colors = ['red', 'green', 'blue', 'cyan', 'orange'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  cardColor = newRandomColor()
   function changeColor() {
-      var colorElem = document.querySelector("body > main > div.modal.svelte-7jwz2f > article")
-      var newColor = colors[Math.floor(Math.random() * colors.length)];
-      colorElem.style = `--card-color: var(--color-${newColor});`
-    }
+    var colorElem = document.querySelector("body > main > div.modal.svelte-7jwz2f > article")
+    cardColor = newRandomColor();
+    colorElem.style = `--card-color: var(--color-${cardColor});`
+  }
 
 </script>
 
-<Modal date={Date.now()} close={closeCard}>
+<Modal date={Date.now()} cardColor={cardColor} close={closeCard}>
   <div class="memory-form" slot="content">
     <textarea class="memory-form__input" bind:value={memory} placeholder="Today I..."></textarea>
     <button class="memory-form__save" disabled={!memory.length} on:click={saveMemory}>
