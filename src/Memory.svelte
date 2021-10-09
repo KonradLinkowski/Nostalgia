@@ -20,7 +20,7 @@
   <i class="material-icons" slot="action">delete</i>
 </Modal>
 {#if deleteModalIsOpen}
-  <Modal close={closeDeleteModal} cardColor="red" date={0}>
+  <Modal close={closeDeleteModal} date={0}>
     <div class="delete-modal" slot="content">
       <p class="delete-modal__text">Do you want to delete this Memory?</p>
       <button class="delete-modal__close" on:click={() => dele(memory.text, memory.date)}>

@@ -2,7 +2,7 @@
   import { fly, fade } from 'svelte/transition';
   import { onMount, onDestroy } from 'svelte';
   export let date;
-  export let cardColor;
+  export let cardColor = "red";
   export let close;
   export let action = null;
 
