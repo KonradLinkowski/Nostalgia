@@ -32,16 +32,19 @@
 <Modal date={Date.now()} cardColor={cardColor} close={closeCard}>
   <div class="memory-form" slot="content">
     <textarea class="memory-form__input" bind:value={memory} placeholder="Today I..."></textarea>
-    <button class="memory-form__save" disabled={!memory.length} on:click={saveMemory}>
-      <i class="memory-form__save-icon material-icons">save</i>
-      <span>Save</span>
-    </button>
-    <button class="memory-form__color" on:click={changeColor}>
-      <i class="memory-form__save-icon material-icons">palette</i>
-      <span>Change Colour</span>
-    </button>
+    <div class="memory-form__buttons">
+      <button class="memory-form__save" disabled={!memory.length} on:click={saveMemory}>
+        <i class="memory-form__save-icon material-icons">save</i>
+        <span>Save</span>
+      </button>
+      <button class="memory-form__color" on:click={changeColor}>
+        <i class="memory-form__color-icon material-icons">palette</i>
+        <span>Change Colour</span>
+      </button>
+    </div>
   </div>
 </Modal>
+
 <style>
   .memory-form {
     display: flex;
@@ -58,8 +61,10 @@
     margin: 10px 0;
   }
 
-  .memory-form__save {
+  .memory-form__save,
+  .memory-form__color {
     background: none;
+    width: 100%;
     border: none;
     box-shadow: none;
     display: flex;
@@ -77,14 +82,12 @@
   .memory-form__save:active {
     transform: translateY(0);
     box-shadow: none;
+    background: none;
   }
 
-  .memory-form__save-icon {
+  .memory-form__save-icon,
+  .memory-form__color-icon {
     font-size: 2rem;
     margin-right: 10px;
-  }
-
-  .memory-form__save:active {
-    background: none;
   }
 </style>
