@@ -13,6 +13,13 @@
   }
 
   const colors = ['red', 'green', 'blue', 'cyan', 'orange'];
+
+  function changeColor() {
+      var colorElem = document.querySelector("body > main > div.modal.svelte-7jwz2f > article")
+      var newColor = colors[Math.floor(Math.random() * colors.length)];
+      colorElem.style = `--card-color: var(--color-${newColor});`
+    }
+
 </script>
 
 <Modal date={Date.now()} close={closeCard}>
@@ -21,6 +28,10 @@
     <button class="memory-form__save" disabled={!memory.length} on:click={saveMemory}>
       <i class="memory-form__save-icon material-icons">save</i>
       <span>Save</span>
+    </button>
+    <button class="memory-form__color" on:click={changeColor}>
+      <i class="memory-form__save-icon material-icons">palette</i>
+      <span>Change Colour</span>
     </button>
   </div>
 </Modal>
