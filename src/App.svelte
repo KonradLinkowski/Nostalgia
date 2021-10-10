@@ -17,10 +17,10 @@
     memoryIsOpen = false;
   }
 
-  function saveMemory(memory) {
+  function saveMemory(memory, cardColor) {
     createMemoryIsOpen = false;
     if (memory) {
-      memories.add(memory);
+      memories.add(memory, cardColor);
     }
   }
 

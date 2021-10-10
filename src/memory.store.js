@@ -8,8 +8,8 @@ function createStore() {
 
   return {
     subscribe,
-    add: (text, date = Date.now()) => update(memories => {
-      const newMemories = [...memories, { text, date }]
+    add: (text, color, date = Date.now()) => update(memories => {
+      const newMemories = [...memories, { text, color, date }]
       localStorage.setItem(STORAGE, JSON.stringify(newMemories));
       return newMemories;
     }),
