@@ -14,7 +14,6 @@
     save(memory, cardColor);
   }
 
-
   function newRandomColor() {
     const colors = ['red', 'green', 'blue', 'cyan', 'orange'];
     return colors[Math.floor(Math.random() * colors.length)];
