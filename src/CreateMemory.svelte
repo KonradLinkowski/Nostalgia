@@ -1,8 +1,8 @@
 <script>
   import Modal from './Modal.svelte';
   export let save;
-  export let cardColor;
 
+  let cardColor;
   let memory = '';
 
 
@@ -20,11 +20,8 @@
     return colors[Math.floor(Math.random() * colors.length)];
   }
 
-  cardColor = newRandomColor()
   function changeColor() {
-    var colorElem = document.querySelector("body > main > div.modal.svelte-7jwz2f > article")
     cardColor = newRandomColor();
-    colorElem.style = `--card-color: var(--color-${cardColor});`
   }
 
 </script>
@@ -39,7 +36,7 @@
       </button>
       <button class="memory-form__color" on:click={changeColor}>
         <i class="memory-form__color-icon material-icons">palette</i>
-        <span>Change Colour</span>
+        <span>Change Color</span>
       </button>
     </div>
   </div>
